@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  build:
+    name: Test and build
+    runs-on: macos-15-intel
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: acidanthera/MacKernelSDK
+          ref: 05094e5e88cec7caedbfb35e8449ed0db94bf95b
+          path: MacKernelSDK
+          persist-credentials: false
+      - name: Fetch Lilu development files
+        shell: bash
+        run: |
+          curl -fL --retry 3 -o "$RUNNER_TEMP/Lilu.zip" \
+            https://github.com/acidanthera/Lilu/releases/download/1.7.0/Lilu-1.7.0-DEBUG.zip
+          echo "2adf2425286aba87e9b50c6992724be057a89caa5884464b1adc00154c2fd012  $RUNNER_TEMP/Lilu.zip" | shasum -a 256 -c -
+          unzip -q "$RUNNER_TEMP/Lilu.zip" -d "$RUNNER_TEMP/lilu"
+          cp -R "$RUNNER_TEMP/lilu/Lilu.kext" Lilu.kext
+      - name: CPU tests
+        run: python3 tools/test.py
+      - name: Build DEBUG
+        run: python3 tools/build.py --output build/DEBUG
+      - name: Build RELEASE
+        run: python3 tools/build.py --release --output build/RELEASE
+      - name: Package
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+        run: |
+          python3 tools/package.py --build build/DEBUG --configuration DEBUG --tag "$RELEASE_TAG"
+          python3 tools/package.py --build build/RELEASE --configuration RELEASE --tag "$RELEASE_TAG"
+          cd build/dist
+          shasum -a 256 *.zip > SHA256SUMS
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artifacts
+          path: build/dist/*
+          if-no-files-found: error
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test-results
+          path: |
+            build/tests/*.log
+            build/tests/results.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+  release:
+    name: Create draft release
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && github.repository == 'b00t0x/WhateverXe'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: Artifacts
+          path: dist
+      - name: Attach verified build artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cd dist
+          sha256sum -c SHA256SUMS
+          if gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft > release-state; then
+            test "$(cat release-state)" = true
+          else
+            gh release create "$RELEASE_TAG" --verify-tag --draft \
+              --title "$RELEASE_TAG" --notes-file ../.github/release-notes.md
+          fi
+          gh release upload "$RELEASE_TAG" ./*.zip SHA256SUMS --clobber

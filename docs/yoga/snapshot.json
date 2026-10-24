@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-24",
+  "source_config_sha256": "9078149a667c94d17519b494a4d19df9c66ccc8f751370857b20c7822b725a11",
+  "public_config_sanitized": true,
+  "bios": "KRCN27WW",
+  "machine": "Lenovo Yoga 82UT",
+  "source_upstream": "https://github.com/JulioNectar/Hackintosh-XPS13Plus-IrisXe-Tahoe",
+  "local_WEX_revision": "e481a1ef037d1ca622f51479603af06dbc565497",
+  "local_WEX_uncommitted_edit": "tests/tgl_bootstrap_aux_fixture.cpp: added initializer_list include; preserved",
+  "firmware_omitted_for_identifier_match": [],
+  "gpu_acceleration": "user-confirmed",
+  "usb_c_hdmi": "not working",
+  "stability": "unresolved hangs/cursor corruption",
+  "EFI_source_read_only": true,
+  "raw_BIOS_SPI_dump_included": false
+}

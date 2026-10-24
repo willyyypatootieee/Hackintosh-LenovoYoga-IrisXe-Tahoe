@@ -8,7 +8,7 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-ALS0.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -16,9 +16,9 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-SBUS.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-SBUS.aml</string>
 			</dict>
@@ -32,17 +32,17 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-GPI0.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-GPI0.aml</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-MCHC.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-MCHC.aml</string>
 			</dict>
@@ -56,7 +56,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-PNLF.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -72,23 +72,23 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-USB-Reset.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-USB-Reset.aml</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-USBX.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Path</key>
 				<string>SSDT-USBX.aml</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-XOSI.aml</string>
+				<string>RECOVERY-MINIMAL: disabled while isolating early kernel panic</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -96,34 +96,23 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>XPS I2C touchscreen/touchpad for VoodooI2C (needs patched DSDT)</string>
+				<string>RECOVERY-MINIMAL: hide RTX until Intel baseline boots</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
-				<string>SSDT-XPS-I2C.aml</string>
+				<string>SSDT-Disable_GPU_PEG2.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>CPU plugin-type on _SB.PR00 (minimal, replaces PLUG-ALT)</string>
+				<key>Enabled</key>
+				<false/>
+				<key>Path</key>
+				<string>SSDT-PLUG.aml</string>
 			</dict>
 		</array>
 		<key>Delete</key>
-		<array>
-			<dict>
-				<key>All</key>
-				<false/>
-				<key>Comment</key>
-				<string>Delete SSDT xh_Dell_</string>
-				<key>Enabled</key>
-				<true/>
-				<key>OemTableId</key>
-				<data>
-				eGhfRGVsbF8=
-				</data>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				U1NEVA==
-				</data>
-			</dict>
-		</array>
+		<array/>
 		<key>Patch</key>
 		<array>
 			<dict>
@@ -132,11 +121,11 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>GPI0 _STA to XSTA Rename</string>
+				<string>RECOVERY-MINIMAL: ACPI rename disabled while isolating early kernel panic</string>
 				<key>Count</key>
 				<integer>0</integer>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				FF9TVEE=
@@ -170,49 +159,11 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>OSID to XSID rename - must come before _OSI to XOSI rename!</string>
+				<string>RECOVERY-MINIMAL: ACPI rename disabled while isolating early kernel panic</string>
 				<key>Count</key>
 				<integer>0</integer>
 				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				T1NJRA==
-				</data>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>OemTableId</key>
-				<data>
-				</data>
-				<key>Replace</key>
-				<data>
-				WFNJRA==
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				</data>
-			</dict>
-			<dict>
-				<key>Base</key>
-				<string></string>
-				<key>BaseSkip</key>
-				<integer>0</integer>
-				<key>Comment</key>
-				<string>PNLF to XNLF Rename</string>
-				<key>Count</key>
-				<integer>0</integer>
-				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>
 				UE5MRg==
@@ -246,7 +197,7 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>_OSI to XOSI rename - requires SSDT-XOSI.aml</string>
+				<string>_OSI -&gt; XOSI rename (I2C touchpad / Windows-OSI checks)</string>
 				<key>Count</key>
 				<integer>0</integer>
 				<key>Enabled</key>
@@ -284,14 +235,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: I2C0 _ADR to XADR (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS01 original _UPC -&gt; XUPC</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0FEUgCkDAAAFQ==
+				U1MwMQhfQURSCgIIX1VQQw==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -300,10 +251,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WEFEUgCkDAAAFQ==
+				U1MwMQhfQURSCgIIWFVQQw==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -311,10 +263,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 			<dict>
@@ -323,14 +275,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: I2C1 _ADR to XADR (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS02 original _UPC -&gt; XUPC</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0FEUgCkDAEAFQ==
+				U1MwMghfQURSCgMIX1VQQw==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -339,10 +291,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WEFEUgCkDAEAFQ==
+				U1MwMghfQURSCgMIWFVQQw==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -350,10 +303,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 			<dict>
@@ -362,14 +315,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: TPL0 _INI to XINI (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS03 original _UPC -&gt; XUPC</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0lOSQCgEpU=
+				U1MwMwhfQURSCgQIX1VQQw==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -378,10 +331,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WElOSQCgEpU=
+				U1MwMwhfQURSCgQIWFVQQw==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -389,10 +343,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 			<dict>
@@ -401,14 +355,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: TPL0 _CRS to XCRS (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS04 original _UPC -&gt; XUPC</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0NSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUEw=
+				U1MwNAhfQURSCgUIX1VQQw==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -417,10 +371,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WENSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUEw=
+				U1MwNAhfQURSCgUIWFVQQw==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -428,10 +383,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 			<dict>
@@ -440,14 +395,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: TPD0 _INI to XINI (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS01 original _PLD -&gt; XPLD</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0lOSQCgCFs=
+				CF9QTEQSFgEREwoQggAAAAAAAAAxHIACAAAAAA==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -456,10 +411,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WElOSQCgCFs=
+				CFhQTEQSFgEREwoQggAAAAAAAAAxHIACAAAAAA==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -467,10 +423,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 			<dict>
@@ -479,14 +435,14 @@
 				<key>BaseSkip</key>
 				<integer>0</integer>
 				<key>Comment</key>
-				<string>XPS: TPD0 _CRS to XCRS (SSDT-XPS-I2C)</string>
+				<string>Yoga TXHC duplicate: SS03 original _PLD -&gt; XPLD</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
 				<true/>
 				<key>Find</key>
 				<data>
-				X0NSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUEQ=
+				CF9QTEQSFgEREwoQggAAAAAAAAAxHIABAAAAAA==
 				</data>
 				<key>Limit</key>
 				<integer>0</integer>
@@ -495,10 +451,11 @@
 				</data>
 				<key>OemTableId</key>
 				<data>
+				VGNzc1NzZHQ=
 				</data>
 				<key>Replace</key>
 				<data>
-				WENSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUEQ=
+				CFhQTEQSFgEREwoQggAAAAAAAAAxHIABAAAAAA==
 				</data>
 				<key>ReplaceMask</key>
 				<data>
@@ -506,49 +463,10 @@
 				<key>Skip</key>
 				<integer>0</integer>
 				<key>TableLength</key>
-				<integer>0</integer>
+				<integer>54267</integer>
 				<key>TableSignature</key>
 				<data>
-				RFNEVA==
-				</data>
-			</dict>
-			<dict>
-				<key>Base</key>
-				<string></string>
-				<key>BaseSkip</key>
-				<integer>0</integer>
-				<key>Comment</key>
-				<string>XPS: Scope RHUB.HS08 to RHUB (HS08 is conditional)</string>
-				<key>Count</key>
-				<integer>1</integer>
-				<key>Enabled</key>
-				<true/>
-				<key>Find</key>
-				<data>
-				ARBPFy8FX1NCX1BDMDBYSENJUkhVQkhTMDg=
-				</data>
-				<key>Limit</key>
-				<integer>0</integer>
-				<key>Mask</key>
-				<data>
-				</data>
-				<key>OemTableId</key>
-				<data>
-				</data>
-				<key>Replace</key>
-				<data>
-				ARBPFy8EX1NCX1BDMDBYSENJUkhVQqOjo6M=
-				</data>
-				<key>ReplaceMask</key>
-				<data>
-				</data>
-				<key>Skip</key>
-				<integer>0</integer>
-				<key>TableLength</key>
-				<integer>0</integer>
-				<key>TableSignature</key>
-				<data>
-				RFNEVA==
+				U1NEVA==
 				</data>
 			</dict>
 		</array>
@@ -574,27 +492,67 @@
 		<array>
 			<dict>
 				<key>Address</key>
-				<integer>3221225472</integer>
+				<integer>929964032</integer>
 				<key>Comment</key>
-				<string>PCIe ECAM/MCFG 0xC0000000 (256MB) - NAO devirtualizar</string>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 			</dict>
 			<dict>
 				<key>Address</key>
-				<integer>4177526784</integer>
+				<integer>954384384</integer>
 				<key>Comment</key>
-				<string>0xF9000000</string>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>954404864</integer>
+				<key>Comment</key>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
+				<key>Enabled</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>1067315200</integer>
+				<key>Comment</key>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
+				<key>Enabled</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>1071312896</integer>
+				<key>Comment</key>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
+				<key>Enabled</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>3221225472</integer>
+				<key>Comment</key>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
+				<key>Enabled</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>4261478400</integer>
+				<key>Comment</key>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
+				<key>Enabled</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Address</key>
 				<integer>4278190080</integer>
 				<key>Comment</key>
-				<string>0xFF000000</string>
+				<string>Firmware runtime-reserved region (WSMT ProtectMMIO)</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 			</dict>
 		</array>
 		<key>Patch</key>
@@ -639,7 +597,7 @@
 			<key>ClearTaskSwitchBit</key>
 			<false/>
 			<key>DevirtualiseMmio</key>
-			<true/>
+			<false/>
 			<key>DisableSingleUser</key>
 			<false/>
 			<key>DisableVariableWrite</key>
@@ -682,6 +640,28 @@
 	<dict>
 		<key>Add</key>
 		<dict>
+			<key>PciRoot(0x0)/Pci(0x1D,0x0)</key>
+			<dict>
+				<key>force-polling</key>
+				<data>
+				AQAAAA==
+				</data>
+			</dict>
+			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<data>
+				SW50ZXJuYWxAMCwzMSwz
+				</data>
+				<key>hda-gfx</key>
+				<data>
+				b25ib2FyZC0x
+				</data>
+				<key>layout-id</key>
+				<data>
+				CwAAAA==
+				</data>
+			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
@@ -737,7 +717,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-MINIMAL: required dependency of VirtualSMC.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -753,17 +733,53 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>IntelBluetoothFirmware.kext</string>
+				<string>NootedGreen.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>Tahoe Iris Xe: JulioNectar ADL-P/RPL-P TGL bridge</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/IntelBluetoothFirmware</string>
+				<string>Contents/MacOS/NootedGreen</string>
 				<key>MaxKernel</key>
-				<string></string>
+				<string>25.99.99</string>
 				<key>MinKernel</key>
-				<string></string>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>YogaGMSFix.kext</string>
+				<key>Comment</key>
+				<string>Yoga FE GMS: exact HW+FB runtime correction for AuxKC drivers</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/YogaGMSFix</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>YogaCursorArb.kext</string>
+				<key>Comment</key>
+				<string>EXPERIMENTAL ADL-P cursor arbitration Wa_22012358565; opt-in only</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/YogaCursorArb</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
@@ -771,49 +787,13 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>IntelBTPatcher.kext</string>
+				<string>CpuTscSync.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>TSC sync across cores (Alder Lake hybrid P+E); fixes Non-monotonic time panic</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/IntelBTPatcher</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>BlueToolFixup.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/BlueToolFixup</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>21.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>BrightnessKeys.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/BrightnessKeys</string>
+				<string>Contents/MacOS/CpuTscSync</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -827,7 +807,7 @@
 				<key>BundlePath</key>
 				<string>CpuTopologyRebuild.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -843,45 +823,9 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>NVMeFix.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/NVMeFix</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>18.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>RestrictEvents.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/RestrictEvents</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-MINIMAL: SMC emulation, loaded after Lilu.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -899,7 +843,7 @@
 				<key>BundlePath</key>
 				<string>SMCBatteryManager.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -915,45 +859,9 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>SMCDellSensors.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<false/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/SMCDellSensors</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>SMCLightSensor.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<false/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/SMCLightSensor</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>SMCProcessor.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -971,9 +879,9 @@
 				<key>BundlePath</key>
 				<string>SMCSuperIO.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
-				<false/>
+				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/SMCSuperIO</string>
 				<key>MaxKernel</key>
@@ -987,13 +895,13 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>USBToolBox.kext</string>
+				<string>SMCLightSensor.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/USBToolBox</string>
+				<string>Contents/MacOS/SMCLightSensor</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -1005,17 +913,125 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>UTBDefault.kext</string>
+				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
-				<string></string>
+				<string>Contents/MacOS/WhateverGreen</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
 				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>AppleALC.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/AppleALC</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>SimpleHDA.kext</string>
+				<key>Comment</key>
+				<string>SimpleHDA 1.0.0</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/SimpleHDA</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>AirportItlwm.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/AirportItlwm</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>IntelBluetoothFirmware.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/IntelBluetoothFirmware</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>IntelBTPatcher.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/IntelBTPatcher</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>BlueToolFixup.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/BlueToolFixup</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string>21.0.0</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
@@ -1025,7 +1041,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>I2C services</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1043,7 +1059,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>I2C GPIO</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1061,7 +1077,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>I2C bus</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1079,7 +1095,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>VoodooInput for VoodooI2CHID multitouch</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1097,7 +1113,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2CHID.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>I2C HID touchpad</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1115,7 +1131,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>PS/2 controller</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1131,27 +1147,9 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<false/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/VoodooInput</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>PS/2 keyboard</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1169,9 +1167,9 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>PS/2 mouse</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/VoodooPS2Mouse</string>
 				<key>MaxKernel</key>
@@ -1187,9 +1185,9 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>PS/2 trackpad</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/VoodooPS2Trackpad</string>
 				<key>MaxKernel</key>
@@ -1203,49 +1201,121 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>WhateverGreen.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/WhateverGreen</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>NootedGreen.kext</string>
-				<key>Comment</key>
-				<string>teste NootedGreen Tahoe (2026-10-16)</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/NootedGreen</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>25.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>XHCI-unsupported.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
 				<string></string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>NVMeFix.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/NVMeFix</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string>18.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>RestrictEvents.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/RestrictEvents</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>BrightnessKeys.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/BrightnessKeys</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>USBToolBox.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/USBToolBox</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>UTBDefault.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string></string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>YogaSMC.kext</string>
+				<key>Comment</key>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/YogaSMC</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -1259,7 +1329,7 @@
 				<key>BundlePath</key>
 				<string>itlwm.kext</string>
 				<key>Comment</key>
-				<string>fallback (needs HeliPort); disabled in favour of AirportItlwm</string>
+				<string>RECOVERY-PLATFORM-ONLY: disabled while isolating post-EXITBS handoff.</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -1271,24 +1341,6 @@
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>x86_64</string>
-				<key>BundlePath</key>
-				<string>AirportItlwm.kext</string>
-				<key>Comment</key>
-				<string>laobamac AirportItlwm-Tahoe v2.4.0-alpha 738d4c6 (native IO80211Family/Skywalk)</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/AirportItlwm</string>
-				<key>MaxKernel</key>
-				<string>25.99.99</string>
-				<key>MinKernel</key>
-				<string>25.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
 		</array>
 		<key>Block</key>
 		<array/>
@@ -1296,18 +1348,18 @@
 		<dict>
 			<key>Cpuid1Data</key>
 			<data>
-			VQYKAAAAgAAAAAAAAAAAAA==
+			VQYKAAAAAAAAAAAAAAAAAA==
 			</data>
 			<key>Cpuid1Mask</key>
 			<data>
-			/////wAA/wAAAAAAAAAAAA==
+			/////wAAAAAAAAAAAAAAAA==
 			</data>
 			<key>DummyPowerManagement</key>
 			<false/>
 			<key>MaxKernel</key>
-			<string></string>
+			<string>25.99.99</string>
 			<key>MinKernel</key>
-			<string></string>
+			<string>25.0.0</string>
 		</dict>
 		<key>Force</key>
 		<array/>
@@ -1319,7 +1371,7 @@
 				<key>Base</key>
 				<string>_cpu_thread_alloc</string>
 				<key>Comment</key>
-				<string>force HT enabled for Sequoia or later</string>
+				<string>RECOVERY-ISOLATION: CpuTopologyRebuild HT companion patch disabled with CpuTopologyRebuild.</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
@@ -1355,7 +1407,7 @@
 				<key>Base</key>
 				<string>_cpu_thread_alloc</string>
 				<key>Comment</key>
-				<string>force HT enabled for Mojave to Sonoma</string>
+				<string>RECOVERY-ISOLATION: CpuTopologyRebuild HT companion patch disabled with CpuTopologyRebuild.</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
@@ -1391,7 +1443,7 @@
 				<key>Base</key>
 				<string>_cpu_thread_alloc</string>
 				<key>Comment</key>
-				<string>force HT enabled for High Sierra or earlier (untested)</string>
+				<string>RECOVERY-ISOLATION: CpuTopologyRebuild HT companion patch disabled with CpuTopologyRebuild.</string>
 				<key>Count</key>
 				<integer>1</integer>
 				<key>Enabled</key>
@@ -1421,6 +1473,150 @@
 				<key>Skip</key>
 				<integer>0</integer>
 			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>Base</key>
+				<string>__ZN15IGMemoryManager12initSegmentsEv</string>
+				<key>Comment</key>
+				<string>Yoga 46A6 GMS FE=60MiB: fix task allocator underflow (25G241/TGL16.0.32)</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				RA+38EGB5gD/AABJweYR
+				</data>
+				<key>Identifier</key>
+				<string>com.xxxxx.driver.AppleIntelTGLGraphics</string>
+				<key>Limit</key>
+				<integer>128</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>Replace</key>
+				<data>
+				ScfGAADAA5CQkJCQkJCQ
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>Base</key>
+				<string>__ZN24AppleIntelBaseController13FBMemMgr_InitEv</string>
+				<key>Comment</key>
+				<string>Yoga FE GMS framebuffer: cursor aperture offset 4032MiB -&gt; 60MiB</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				weARJQAAAP4=
+				</data>
+				<key>Identifier</key>
+				<string>com.xxxxx.driver.AppleIntelTGLGraphicsFramebuffer</string>
+				<key>Limit</key>
+				<integer>192</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>Replace</key>
+				<data>
+				uAAAwAOQkJA=
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>Base</key>
+				<string></string>
+				<key>Comment</key>
+				<string>Yoga IntelAccelerator matching: use PCI IDs, never all display adapters</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				SU9QQ0lDbGFzc01hdGNoAA==
+				</data>
+				<key>Identifier</key>
+				<string>com.StezzaPilot.NootedGreen</string>
+				<key>Limit</key>
+				<integer>335872</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>Replace</key>
+				<data>
+				SU9QQ0lNYXRjaAAAAAAAAA==
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>Base</key>
+				<string></string>
+				<key>Comment</key>
+				<string>Yoga IntelAccelerator IDs: 46A6 Intel physical / 9A49 Intel spoof only</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				MHgwMzAwMDAwMCYweGZmMDAwMDAwAA==
+				</data>
+				<key>Identifier</key>
+				<string>com.StezzaPilot.NootedGreen</string>
+				<key>Limit</key>
+				<integer>335872</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>Replace</key>
+				<data>
+				MHg0NmE2ODA4NiAweDlhNDk4MDg2AA==
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+			</dict>
 		</array>
 		<key>Quirks</key>
 		<dict>
@@ -1437,7 +1633,7 @@
 			<key>CustomSMBIOSGuid</key>
 			<true/>
 			<key>DisableIoMapper</key>
-			<false/>
+			<true/>
 			<key>DisableIoMapperMapping</key>
 			<false/>
 			<key>DisableLinkeditJettison</key>
@@ -1512,26 +1708,26 @@
 			<key>PickerVariant</key>
 			<string>Auto</string>
 			<key>PollAppleHotKeys</key>
-			<true/>
+			<false/>
 			<key>ShowPicker</key>
 			<true/>
 			<key>TakeoffDelay</key>
 			<integer>0</integer>
 			<key>Timeout</key>
-			<integer>1</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Debug</key>
 		<dict>
 			<key>AppleDebug</key>
 			<false/>
 			<key>ApplePanic</key>
-			<false/>
-			<key>DisableWatchDog</key>
 			<true/>
+			<key>DisableWatchDog</key>
+			<false/>
 			<key>DisplayDelay</key>
 			<integer>0</integer>
 			<key>DisplayLevel</key>
-			<integer>2147483714</integer>
+			<integer>0</integer>
 			<key>LogModules</key>
 			<string>*</string>
 			<key>SysReport</key>
@@ -1580,7 +1776,30 @@
 			<false/>
 		</dict>
 		<key>Tools</key>
-		<array/>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Auxiliary</key>
+				<false/>
+				<key>Comment</key>
+				<string>Dump firmware memory map from OpenCore</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<false/>
+				<key>Name</key>
+				<string>MmapDump</string>
+				<key>Path</key>
+				<string>MmapDump.efi</string>
+				<key>RealPath</key>
+				<false/>
+				<key>TextMode</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>NVRAM</key>
 	<dict>
@@ -1598,9 +1817,9 @@
 				<key>revcpu</key>
 				<integer>1</integer>
 				<key>revcpuname</key>
-				<string>13th Gen Intel(R) Core(TM) i7-1360P</string>
+				<string>Intel Core i7-12700H</string>
 				<key>revpatch</key>
-				<string>sbvmm,cpuname</string>
+				<string>cpuname</string>
 				<key>rtc-blacklist</key>
 				<data>
 				</data>
@@ -1615,17 +1834,15 @@
 				</data>
 				<key>bluetoothExternalDongleFailed</key>
 				<data>
-				AA==
 				</data>
 				<key>bluetoothInternalControllerInfo</key>
 				<data>
-				AAAAAAAAAAAAAAAAAAA=
 				</data>
 				<key>boot-args</key>
-				<string>IGLogLevel=3 -ngreentglwithgfx -allow3d -disablegfxfirmware ngreen-dmc=adlp -ngreenv189 -ngreenkeepefi -ngreenxefix -ngreenfixbootmode amfi_get_out_of_my_way=1 ngreenSched=4 ngreenV142=3 ngreenblmax=17777 gfxrst=1</string>
+				<string>-v keepsyms=1 -vi2c-force-polling alcid=11 -ngreentglwithgfx -allow3d -disablegfxfirmware ngreen-dmc=adlp -ngreenv189 -ngreenkeepefi -ngreenxefix amfi_get_out_of_my_way=1 ngreenSched=4 ngreenV142=3 -ngreenfixbootmode shda-lang=en -yogacursorarb</string>
 				<key>csr-active-config</key>
 				<data>
-				EwoAAA==
+				AwoAAA==
 				</data>
 				<key>prev-lang:kbd</key>
 				<data>
@@ -1650,10 +1867,6 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<array>
 				<string>boot-args</string>
-				<string>ForceDisplayRotationInEFI</string>
-				<string>csr-active-config</string>
-				<string>bluetoothExternalDongleFailed</string>
-				<string>bluetoothInternalControllerInfo</string>
 			</array>
 		</dict>
 		<key>LegacyOverwrite</key>
@@ -1714,7 +1927,7 @@
 			<key>SpoofVendor</key>
 			<true/>
 			<key>SystemMemoryStatus</key>
-			<string>Auto</string>
+			<string>Soldered</string>
 			<key>SystemProductName</key>
 			<string>MacBookPro16,2</string>
 			<key>SystemSerialNumber</key>
@@ -1812,9 +2025,9 @@
 				<key>Arguments</key>
 				<string></string>
 				<key>Comment</key>
-				<string>Not shipped (Apple binary). Get it from acidanthera/OcBinaryData if you need HFS+ media.</string>
+				<string></string>
 				<key>Enabled</key>
-				<false/>
+				<true/>
 				<key>HideVerbose</key>
 				<false/>
 				<key>LoadEarly</key>

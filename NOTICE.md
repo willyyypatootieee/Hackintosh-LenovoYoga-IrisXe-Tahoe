@@ -26,6 +26,13 @@
   `tools/fingerprint/xefp-libfprint-macos.patch` modifies libfprint and is distributed under the same LGPL-2.1-or-later
   terms; the other files in `tools/fingerprint/` (xe-fp, pam_xefp) are this repository's own code and only link
   dynamically against those libraries.
-- **Apple software is not included.** The scripts patch your own copy of Apple's GPUDriversIntel 16.0.32 bundles at
-  install time. Apple, macOS, Metal and related names are trademarks of Apple Inc.; this project is not affiliated
-  with or endorsed by Apple, Intel or Dell.
+- **Apple software is not committed in the source tree.** Original upstream scripts patch your own copy of
+  Apple's GPUDriversIntel 16.0.32 bundles at install time. Separately labeled Yoga recovery release archives
+  preserve the existing modified driver payloads/captured installed stack, not macOS installation media.
+  Those binaries retain Apple's terms; this source license grants no rights over them.
+  Apple, macOS, Metal and related names are trademarks of Apple Inc.; this project is not affiliated
+  with or endorsed by Apple, Intel, Lenovo or Dell.
+- **Yoga additions:** GMS/cursor/Type-C research and snapshot documentation are distributed under the root
+  license unless a file states otherwise. The isolated `research/WhateverXe-ADLP/` tree retains its own
+  LICENSE, AGENTS instructions, source attribution and upstream provenance. Third-party source excerpts
+  and EFI kexts retain their original licenses. Yoga firmware research is not a flashable BIOS image.

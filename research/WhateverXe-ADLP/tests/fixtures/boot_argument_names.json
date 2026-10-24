@@ -1,0 +1,148 @@
+{
+  "-wex-adln-config-stage": [
+    "-adlnconfigstage",
+    "-n97configstage"
+  ],
+  "-wex-adlp-any-pipe": [
+    "-adlpanypipe",
+    "-n97adlpanypipe"
+  ],
+  "-wex-adlp-edp": [
+    "-adlpedp",
+    "-n97adlpedp"
+  ],
+  "-wex-adln-ctx-publish": [
+    "-adlnctxpublish",
+    "-n97ctxpublish"
+  ],
+  "-wex-adln-display-stage": [
+    "-adlndisplaystage",
+    "-n97displaystage"
+  ],
+  "-wex-adln-event-stage": [
+    "-adlneventstage",
+    "-n97eventstage"
+  ],
+  "-wex-adln-golden-raw": [
+    "-adlngoldenraw",
+    "-n97goldenraw"
+  ],
+  "-wex-adln-golden-source": [
+    "-adlngoldensource",
+    "-n97goldensource"
+  ],
+  "-wex-adln-gpu": [
+    "-adlngpu",
+    "-n97gpu"
+  ],
+  "-wex-adln-gt": [
+    "-adlngt",
+    "-n97gt"
+  ],
+  "-wex-adln-initial-no-pocs": [
+    "-adlninitialnopocs",
+    "-n97initialnopocs"
+  ],
+  "-wex-adln-kernel-ctx": [
+    "-adlnkernelctx",
+    "-n97kernelctx"
+  ],
+  "-wex-adln-kernel-early": [
+    "-adlnkernelearly",
+    "-n97kernelearly"
+  ],
+  "-wex-adln-kernel-gl": [
+    "-adlnkernelgl",
+    "-n97kernelgl"
+  ],
+  "-wex-adln-kernel-idle-gap": [
+    "-adlnkernelidlegap",
+    "-n97kernelidlegap"
+  ],
+  "-wex-adln-kernel-new-ctx": [
+    "-adlnkernelnewctx",
+    "-n97kernelnewctx"
+  ],
+  "-wex-adln-kernel-render-wake": [
+    "-adlnkernelrenderwake",
+    "-n97kernelrenderwake"
+  ],
+  "-wex-adln-kernel-reuse": [
+    "-adlnkernelreuse",
+    "-n97kernelreuse"
+  ],
+  "-wex-adln-kernel-wake": [
+    "-adlnkernelwake",
+    "-n97kernelwake"
+  ],
+  "-wex-adln-load-only": [
+    "-adlnloadonly",
+    "-n97loadonly"
+  ],
+  "-wex-adln-memory-stage": [
+    "-adlnmemorystage",
+    "-n97memorystage"
+  ],
+  "-wex-adln-parent-entry": [
+    "-adlnparententry",
+    "-n97parententry"
+  ],
+  "-wex-adln-parent-only": [
+    "-adlnparentonly",
+    "-n97parentonly"
+  ],
+  "-wex-adln-probe": [
+    "-adlnprobe",
+    "-n97probe"
+  ],
+  "-wex-adln-qtrace": [
+    "-adlnqtrace",
+    "-n97qtrace"
+  ],
+  "-wex-adln-rcs-no-pocs": [
+    "-adlnrcsnopocs",
+    "-n97rcsnopocs"
+  ],
+  "-wex-adln-scanout": [
+    "-adlnscanout",
+    "-n97scanout"
+  ],
+  "-wex-adln-task-stage": [
+    "-adlntaskstage",
+    "-n97taskstage"
+  ],
+  "-wex-display13-trace": [
+    "-display13trace",
+    "-n97displaytrace"
+  ],
+  "-wex-tgl-off": [
+    "-igfxtgloff"
+  ],
+  "-wex-nopanel": [
+    "-tglnopanel"
+  ],
+  "-wex-tgl-prog-off": [
+    "-tglprogoff"
+  ],
+  "-wex-no-host-rps": [
+    "-tglnohostrps"
+  ],
+  "-wex-tgl-hold-render-wake": [
+    "-tglholdrenderwake"
+  ],
+  "-wex-tc-aux": [
+    "-tgltc-aux"
+  ],
+  "-wex-tc-bootstrap": [
+    "-tgltc-bootstrap"
+  ],
+  "-wexoff": [
+    "-wxeoff"
+  ],
+  "-wexdbg": [
+    "-wxedbg"
+  ],
+  "-wexbeta": [
+    "-wxebeta"
+  ]
+}

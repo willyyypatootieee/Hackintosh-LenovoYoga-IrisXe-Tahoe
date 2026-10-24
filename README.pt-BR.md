@@ -1,3 +1,10 @@
+# Aviso: este fork é para Lenovo Yoga
+
+Este documento abaixo é a referência original Dell, não a certificação do Yoga.
+Leia o [README Yoga](README.md), [WIP](docs/yoga/WIP.md) e
+[recuperação](docs/yoga/RECOVERY.md). A aceleração funciona; HDMI e estabilidade
+continuam sem solução. Não use a EFI Dell no Yoga.
+
 # Aceleração da Iris Xe no macOS Tahoe — Dell XPS 13 Plus (9320)
 
 Aceleração gráfica de verdade (**Metal, Core Animation, Liquid Glass**) para a **Intel Iris Xe do i7-1360P (Raptor Lake-P, 8086:A7A0)** no **macOS Tahoe 26.7.1**, num hackintosh com OpenCore.
@@ -80,3 +87,10 @@ A documentação técnica está em inglês. Os comentários do código estão, e
 Base: **NootedGreen** de StezzaPilot (licença *Thou Shalt Not Profit 1.0*, que vale também para este fork). Referências: WhateverXe e o fork do OCLP de b00t0x, o trabalho do jkbuha no WhateverXe, IntelIGPU-Tahoe, acidanthera, OpenIntelWireless, laobamac (AirportItlwm-Tahoe, GPL-2.0, incluído na EFI), Sound Open Firmware e os drivers SOF/SoundWire do Linux, BlackHole, VoodooI2C. Desenvolvido num XPS 13 Plus pelo próprio dono, em parceria com o Claude (Anthropic).
 
 **Nenhum binário da Apple está incluído.** Você precisa da sua própria cópia dos bundles 16.0.32.
+# Aviso sobre este fork Lenovo Yoga
+
+Este arquivo preserva a documentação original do **Dell XPS 13 Plus** e não
+certifica essas funções no Lenovo Yoga. Consulte o [README do Yoga](README.md),
+o [estado WIP](docs/yoga/WIP.md) e a [recuperação](docs/yoga/RECOVERY.md).
+No Yoga, a aceleração foi confirmada, mas USB-C/HDMI, corrupção do cursor e
+estabilidade continuam sem solução. Não use a EFI Dell como EFI Yoga.
