@@ -2,6 +2,8 @@
 
 **Working Iris Xe acceleration + ongoing Yoga development · 24 October 2026**
 
+<img width="2048" height="1280" alt="image" src="https://github.com/user-attachments/assets/7ca4296e-c589-4ff1-8f10-cbbebf1ad360" />
+
 I'm **Willy Patootie ([@willyyypatootieee](https://github.com/willyyypatootieee))**,
 and this is my Lenovo Yoga 82UT setup. **I've confirmed working Iris Xe
 acceleration on my laptop.** I'm sharing my working EFI, graphics installation
