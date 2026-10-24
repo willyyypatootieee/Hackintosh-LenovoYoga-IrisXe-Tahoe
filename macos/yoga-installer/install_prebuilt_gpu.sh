@@ -1,5 +1,5 @@
 #!/bin/bash
-# No compiler/Xcode/CLT dependency. Run only on the installed external Tahoe.
+# Install the captured Yoga GPU stack. Run only on the authorized external Tahoe.
 # Does not modify EFI, ACPI, boot arguments or unrelated device drivers.
 set -euo pipefail
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
@@ -33,19 +33,48 @@ INTERNAL=$("$PB" -c 'Print :Internal' "$WORK/store.plist")
 echo 'Checking payload checksums...'
 (cd "$HERE" && shasum -a 256 --status -c SHA256SUMS) || fail 'Payload checksum mismatch.'
 echo 'All payload checksums passed.'
+# Restrict all later wildcard copies/removals to the captured 11-bundle layout.
+EXPECTED_BUNDLES=(
+    Library/Extensions/AppleIntelGraphicsShared.bundle
+    Library/Extensions/AppleIntelTGLGraphics.kext
+    Library/Extensions/AppleIntelTGLGraphicsFramebuffer.kext
+    Library/Extensions/AppleIntelTGLGraphicsGLDriver.bundle
+    Library/Extensions/AppleIntelTGLGraphicsMTLDriver.bundle
+    Library/Extensions/AppleIntelTGLGraphicsVADriver.bundle
+    Library/Extensions/AppleIntelTGLGraphicsVAME.bundle
+    Library/Extensions/HookCase.kext
+    Library/GPUBundles/AppleIntelGraphicsShared.bundle
+    Library/GPUBundles/AppleIntelTGLGraphicsMTLDriver.bundle
+    System/Library/Caches/xe.bundle
+)
+for rel in "${EXPECTED_BUNDLES[@]}"; do
+    [ -d "$HERE/payload/$rel" ] && [ ! -L "$HERE/payload/$rel" ] || fail "Missing or symlinked payload bundle: $rel"
+done
+for category in Library/Extensions Library/GPUBundles System/Library/Caches; do
+    [ ! -L "$HERE/payload/$category" ] || fail "Symlinked payload category: $category"
+    for source in "$HERE/payload/$category/"* "$HERE/payload/$category/".[!.]* "$HERE/payload/$category/"..?*; do
+        [ -e "$source" ] || [ -L "$source" ] || continue
+        rel="$category/$(basename "$source")"
+        allowed=false
+        for expected in "${EXPECTED_BUNDLES[@]}"; do
+            if [ "$rel" = "$expected" ]; then allowed=true; break; fi
+        done
+        [ "$allowed" = true ] || fail "Unexpected payload bundle: $rel"
+    done
+done
 # Repair signatures with Apple's native tool on disposable copies, never on
 # the checksum-protected originals or currently installed drivers. rcodesign
 # left stale detached CodeDirectory data in the shared resource bundles.
 PREPARED="$WORK/prepared"
 ditto "$HERE/payload" "$PREPARED"
-NATIVE_LOG="$HERE/native-signing-v2.log"
-echo 'Preparing native ad-hoc signatures (built-in codesign; no Xcode)...'
+NATIVE_LOG="$WORK/native-signing.log"
+echo 'Preparing native ad-hoc signatures using macOS codesign...'
 if ! /bin/bash "$HERE/prepare_native_signatures.sh" "$PREPARED" > "$NATIVE_LOG" 2>&1; then
     cat "$NATIVE_LOG"
     fail "Native signing or strict verification failed before installing files. Log: $NATIVE_LOG"
 fi
 cat "$NATIVE_LOG"
-echo 'Checking signatures with Apple codesign (no developer tools required)...'
+echo 'Checking signatures with Apple codesign...'
 for bundle in "$PREPARED"/Library/Extensions/* "$PREPARED"/Library/GPUBundles/* "$PREPARED"/System/Library/Caches/*; do
     /usr/bin/codesign --verify --deep --strict "$bundle" || fail "Signature rejected: $bundle"
 done
@@ -58,6 +87,7 @@ for dir in /Library/Extensions /Library/GPUBundles /System/Library/Caches; do
 done
 STAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP="/Library/Application Support/YogaXeGPU/backups/$STAMP"
+[ ! -e "$BACKUP" ] || fail 'Backup path already exists. Nothing replaced.'
 mkdir -p "$BACKUP/original"
 exec > >(tee "$BACKUP/install.log") 2>&1
 echo "GPU-only backup: $BACKUP"
@@ -82,7 +112,7 @@ for category in Library/Extensions Library/GPUBundles System/Library/Caches; do
     done
 done
 cp "$HERE/SHA256SUMS" "$BACKUP/payload-SHA256SUMS"
-cp "$NATIVE_LOG" "$BACKUP/native-signing-v2.log"
+cp "$NATIVE_LOG" "$BACKUP/native-signing.log"
 cp "$HERE/restore_prebuilt_gpu.sh" "$BACKUP/restore_prebuilt_gpu.sh"
 touch "$BACKUP/INSTALL-INCOMPLETE"
 for category in Library/Extensions Library/GPUBundles System/Library/Caches; do
@@ -97,14 +127,29 @@ for category in Library/Extensions Library/GPUBundles System/Library/Caches; do
     done
 done
 echo 'Registering the three required kexts using Tahoe kmutil...'
-if ! /usr/bin/kmutil load -z --load-style match-only \
+KMUTIL_STATUS=0
+if /usr/bin/kmutil load -z --load-style match-only \
     -p /Library/Extensions/HookCase.kext \
     -p /Library/Extensions/AppleIntelTGLGraphics.kext \
-    -p /Library/Extensions/AppleIntelTGLGraphicsFramebuffer.kext; then
-    fail "kmutil did not complete. Preserve the log at $BACKUP/install.log. Do not treat this as a successful deployment."
+    -p /Library/Extensions/AppleIntelTGLGraphicsFramebuffer.kext > "$BACKUP/kmutil.log" 2>&1; then
+    KMUTIL_STATUS=0
+else
+    KMUTIL_STATUS=$?
 fi
-mv "$BACKUP/INSTALL-INCOMPLETE" "$BACKUP/FILES-INSTALLED-KMUTIL-RETURNED-SUCCESS"
-echo 'Files installed; kmutil returned success. This does not prove the kexts are approved or loaded.'
+cat "$BACKUP/kmutil.log"
+printf '%s\n' "$KMUTIL_STATUS" > "$BACKUP/kmutil-exit-status.txt"
+KMUTIL_MESSAGE=$(sed '/^[[:space:]]*$/d' "$BACKUP/kmutil.log")
+EXPECTED_REBOOT='Loading extension(s): org.smichaud.HookCase,com.xxxxx.driver.AppleIntelTGLGraphics,com.xxxxx.driver.AppleIntelTGLGraphicsFramebuffer requires a reboot'
+if [ "$KMUTIL_STATUS" -eq 0 ]; then
+    mv "$BACKUP/INSTALL-INCOMPLETE" "$BACKUP/FILES-INSTALLED-KMUTIL-RETURNED-SUCCESS"
+    echo 'SUCCESS: GPU files installed; kmutil returned success.'
+elif [ "$KMUTIL_MESSAGE" = "$EXPECTED_REBOOT" ]; then
+    mv "$BACKUP/INSTALL-INCOMPLETE" "$BACKUP/FILES-INSTALLED-KMUTIL-REQUIRES-REBOOT"
+    echo 'REBOOT REQUIRED: GPU files installed; macOS requests a restart to load the three extensions.'
+else
+    fail "kmutil failed (exit $KMUTIL_STATUS). Preserve $BACKUP/install.log and kmutil.log. Do not reboot for a GPU test."
+fi
+echo 'Installation does not itself prove the kexts are approved, loaded or accelerating graphics.'
 echo 'Approve an extension in Privacy & Security if macOS requests it.'
-echo 'No automatic reboot. The external EFI still requires a separate checked GPU review.'
+echo 'No automatic reboot. Use the matching Yoga EFI; it is not installed by this script.'
 echo "Backup and restore script: $BACKUP"

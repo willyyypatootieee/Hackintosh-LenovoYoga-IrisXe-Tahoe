@@ -1,17 +1,16 @@
-# Preserved Yoga macOS installer scripts
+# Yoga GPU installer
 
-These are the existing v2 GPU installer and v3 HookCase repair workflow, not a
-newly validated clean-install package. Full original archives are release assets.
-See the [installation guide](../../readme.md) and
-[recovery instructions](../../docs/yoga/RECOVERY.md).
+Download **`Yoga-GPU-installer-20261024.tar.gz`** from the
+[release](https://github.com/willyyypatootieee/Hackintosh-LenovoYoga-IrisXe-Tahoe/releases/tag/yoga-checkpoint-20261024).
+It contains all 11 captured GPU bundles, **including repaired HookCase**, the
+`Install GPU.command` launcher, signing/backup/restore scripts and checksums.
+There is no separate repair step.
 
-This directory alone has no `payload/` or `SHA256SUMS`, so it is **not sufficient
-to install graphics**. Public source copies have serial/workspace information
-redacted. Release archives retain the original external-partition/build guards.
-Do not bypass a target mismatch after formatting.
+See the [installation guide](../../readme.md). The payload is from my accelerated
+Yoga installation, but this consolidated installer has not been tested on a fresh
+macOS install. It retains build 25G241, original external-partition and non-internal
+disk checks; do not bypass them. It does not alter EFI or peripherals.
 
-The v3 repair additionally requires the original failed v2 backup at
-`/Library/Application Support/YogaXeGPU/backups/20261023-221106` and its matching
-failure markers. It does not automatically support a fresh install's backup.
-The corrected bundle under `repaired/` is preserved separately; that directory
-is not a complete GPU installer.
+This source directory alone does not contain the full payload or its manifest.
+The release archive is the installable package. `repaired/` preserves the same
+corrected HookCase separately for source-tree recovery, not as a second installer.

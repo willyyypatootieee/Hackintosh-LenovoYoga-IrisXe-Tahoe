@@ -16,8 +16,8 @@ setup is stable.
 ## Installation
 
 Start with **[the Yoga installation guide](readme.md)**. It covers the matching
-EFI and GPU files, checksum verification, the v2 installer / v3 HookCase repair
-sequence, reboot checks and rollback. **EFI alone is not enough for acceleration.**
+EFI and GPU files, checksum verification, the single GPU installer, reboot checks
+and rollback. **EFI alone is not enough for acceleration.**
 
 Use the Yoga EFI from [`EFI/`](EFI/), not the Dell reference or the experimental
 WhateverXe tree. The preserved installers are tied to **Tahoe build 25G241 and
@@ -87,9 +87,11 @@ flowchart TD
 ```
 
 EFI alone is **not** the complete graphics installation. The matching driver,
-HookCase and userspace files must also be installed in macOS. The existing
-GPU installer and targeted HookCase repair are preserved, with their
-original checks and restore paths; see [reinstall / recovery](docs/yoga/RECOVERY.md).
+HookCase and userspace files must also be installed in macOS. Download
+**`Yoga-GPU-installer-20261024.tar.gz`** from the release: it contains the captured
+working-stack files, with repaired HookCase already included. No separate repair
+package is needed. The consolidated installer has not yet been tested on a fresh
+macOS installation; see [reinstall / recovery](docs/yoga/RECOVERY.md).
 
 ## Why USB-C → HDMI is still WIP
 
@@ -116,7 +118,7 @@ See [WIP progress](docs/yoga/WIP.md).
 |---|---|
 | [`EFI/`](EFI/) | Active Yoga EFI snapshot; **SMBIOS serial/MLB/UUID/ROM removed** |
 | [`docs/yoga/`](docs/yoga/) | Recovery instructions, progress, hashes and provenance |
-| [`macos/yoga-installer/`](macos/yoga-installer/) | GPU installer scripts, targeted HookCase repair and repaired HookCase bundle |
+| [`macos/yoga-installer/`](macos/yoga-installer/) | Single GPU installer source and repaired HookCase bundle |
 | [`research/yoga/`](research/yoga/) | GMS/cursor source, native Type-C WIP, build scripts, tests and audits |
 | [`research/WhateverXe-ADLP/`](research/WhateverXe-ADLP/) | Local ADL-P development source snapshot, **not deployed** |
 | [`firmware/yoga-82UT/`](firmware/yoga-82UT/) | Reviewed ACPI/VBT/OpRegion research capture; **not a flashable BIOS** |

@@ -17,11 +17,9 @@ Download these archives **and their matching `.sha256` files** from
 | File | Use |
 |---|---|
 | `Yoga-EFI-sanitized-20261024.tar.gz` | My active Yoga EFI, with personal identifiers removed |
-| `Yoga-GPU-installer-v2.tar.gz` | Matching graphics installation package; **not the final stack by itself** |
-| `Yoga-HookCase-repair-v3.tar.gz` | Targeted correction for the v2 HookCase failure |
-| `Yoga-GPU-installed-capture-20261024.tar.gz` | Captured installed GPU files and repaired HookCase, for comparison/recovery; not an installer |
+| `Yoga-GPU-installer-20261024.tar.gz` | Complete captured GPU stack, **repaired HookCase included**, with one installer |
 
-The original installer is historical. The source/WIP and firmware archives are
+There is no separate repair package to choose or run. The source/WIP and firmware archives are
 backups for development, not extra components to install. Do **not** install
 the experimental WhateverXe tree or the Dell reference EFI as part of this setup.
 
@@ -32,9 +30,7 @@ In macOS Terminal, change to the folder containing your downloads, then verify:
 
 ```bash
 shasum -a 256 -c Yoga-EFI-sanitized-20261024.tar.gz.sha256
-shasum -a 256 -c Yoga-GPU-installer-v2.tar.gz.sha256
-shasum -a 256 -c Yoga-HookCase-repair-v3.tar.gz.sha256
-shasum -a 256 -c Yoga-GPU-installed-capture-20261024.tar.gz.sha256
+shasum -a 256 -c Yoga-GPU-installer-20261024.tar.gz.sha256
 ```
 
 Every file must report `OK`. Stop if a checksum fails.
@@ -88,44 +84,36 @@ unrelated internal disk's EFI.
 The published EFI hashes describe the sanitized download. Editing your identity
 will intentionally change the config hash.
 
-## 4. Understand the v2 → v3 graphics installation sequence
+## 4. Install the GPU package
 
-Extract both installer archives into your macOS home folder on APFS. The outer
-archive names are cleaned up; their original internal folder names are retained.
-Find the launchers by name rather than assuming the extracted folder name.
+Extract **`Yoga-GPU-installer-20261024.tar.gz`** into your macOS home folder on
+APFS. Open the extracted **`Yoga-GPU-installer`** folder. It contains the complete
+11-bundle captured stack, repaired HookCase, scripts and checksums.
 
-**Already running my working accelerated stack? Do not reinstall v2.** It contains
-the older defective HookCase and can overwrite the repaired one. Keep the files
-as a backup instead.
+**Already running my working accelerated stack? You do not need to reinstall.**
+Keep this package as a backup instead.
 
-For the original authorized external installation, the preserved sequence is:
+For the verified original external installation:
 
-1. Open **`Install GPU.command`** from the v2 package. Read its prompt, type
-   `INSTALL` only for the verified target, and authorize it. It validates payloads,
-   signs them using macOS tools, backs up replaced files and registers the kexts.
-2. **Do not reboot straight into a GPU test after a v2 link failure.** The known
-   defect is HookCase's `___cxa_atexit` import. Save the full log. A different
-   failure is not covered by the targeted repair.
-3. The preserved v3 repair is **specific to my original failed v2 installation**:
-   it requires the backup directory
-   `/Library/Application Support/YogaXeGPU/backups/20261023-221106`, its
-   `INSTALL-INCOMPLETE` marker, and the matching error in `install.log`.
-   It does **not** automatically accept a new installation's backup timestamp.
-   If these prerequisites are absent, stop; don't fake them or bypass checks.
-4. Only when those prerequisites match, open **`Repair HookCase.command`** from
-   the v3 package, type `REPAIR`, and authorize it. It replaces only HookCase,
-   verifies the other GPU bundles, preserves the original backup and runs `kmutil`.
-5. Continue only on the repair's explicit `SUCCESS` or its exact recognized
-   `REBOOT REQUIRED` result. Stop on any other signing or `kmutil` error and
-   retain the logs. Approve extensions in macOS Privacy & Security if requested,
-   then restart into the intended external Tahoe installation using the Yoga EFI.
+1. Open **`Install GPU.command`**, read the prompt, type `INSTALL` only for the
+   verified target, and authorize it.
+2. The script checks the target and payload, signs disposable copies with macOS
+   `codesign` and verifies them before touching installed files. It then backs
+   up every destination and installs only the named GPU bundles. It does not
+   modify EFI, CPU settings, audio, wireless or inputs.
+3. **Repaired HookCase is installed in the same step.** Do not run any old repair
+   launcher, reinstall an older payload or create old backup/error markers.
+4. Continue only on explicit `SUCCESS` or the exact recognized `REBOOT REQUIRED`
+   result. Stop on any other signing or `kmutil` error and keep the logs.
+5. Approve extensions in macOS Privacy & Security if requested, then restart
+   into the intended external Tahoe installation using the matching Yoga EFI.
 
-This sequence documents how the preserved packages relate to my working stack;
-**it is not a newly qualified one-click clean installer**. The captured installed
-GPU archive contains repaired files, but blindly copying it over macOS does not
-perform native signing, extension approval or kernel-collection registration.
-The scripts in [`macos/yoga-installer/`](macos/yoga-installer/) alone are also
-insufficient: they do not contain the complete installer payload and manifests.
+The GPU **payload** comes from my accelerated installation. This consolidated
+**installer** has not been run through a fresh macOS installation, so the
+post-install result must still be checked. No automatic reboot or target-guard
+bypass is included. The source scripts under
+[`macos/yoga-installer/`](macos/yoga-installer/) alone lack the complete GPU payload;
+use the release archive rather than downloading just the scripts.
 
 ## 5. Verify after reboot
 
@@ -144,7 +132,9 @@ the failure logs before retrying. Installer backups and their generated restore
 scripts are under `/Library/Application Support/YogaXeGPU/backups/`; targeted
 HookCase repair logs/backups are under `/Library/Application Support/YogaXeGPU/repairs/`.
 Read the restore script for the **matching** backup before authorizing it; do not
-mix backup directories or delete the original pre-install files.
+mix backup directories or delete the original pre-install files. Older targeted
+repair logs, if already present, remain under `YogaXeGPU/repairs/`; the new
+installer does not need or remove them.
 
 More detail: [recovery notes](docs/yoga/RECOVERY.md), [source/WIP status](docs/yoga/WIP.md)
 and [contributors](CONTRIBUTORS.md). Huge thanks to
